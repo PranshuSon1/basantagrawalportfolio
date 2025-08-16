@@ -8,13 +8,6 @@ export default function ProfileSection() {
       <Container fluid className="p-0">
         <Row className="g-0">
           {/* Left Side - Image */}
-
-          {/* <Col
-            md={6}
-            className="d-flex align-items-center justify-content-center profile-image-col"
-          >
-            <img src={profileImg} alt="Profile" className="img-fluid profile-img" />
-          </Col> */}
            <Col md={6} className="position-relative text-center">
             {/* Background PNG */}
             <img
@@ -36,7 +29,7 @@ export default function ProfileSection() {
             className="d-flex align-items-center profile-text-col text-white"
           >
             <div className="p-5">
-              <h2 className="fw-bold mb-4">बसंत अग्रवाल</h2>
+              <h1 >बसंत अग्रवाल</h1>
               <p>
                 बसंत अग्रवाल, जिनका जन्म 24 जनवरी 1983 को हुआ, ने सेवा और नेतृत्व के
                 माध्यम से भविष्य को आकार देने में अपना जीवन समर्पित किया है। अखिल

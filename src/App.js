@@ -20,7 +20,7 @@ export default function App() {
           <ProfileSection />
         </div>
       </Element>
-      <Element name="Profile">
+      <Element name="SocialLinks">
         <div className="section container text-white">
           <SocialLinksSection />
         </div>

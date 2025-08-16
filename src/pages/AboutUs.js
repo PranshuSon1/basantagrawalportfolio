@@ -1,5 +1,5 @@
-import { Card, Col, Row } from 'react-bootstrap';
-import profileImg from "../assets/coverPhotoBS.jpg"; // replace with your image path
+import { Card, Col, Row, Table } from 'react-bootstrap';
+import profileImg from "../assets/faq1.jpg"; // replace with your image path
 
 export default function AboutUs() {
   return (
@@ -9,28 +9,109 @@ export default function AboutUs() {
         <Col md={6}>
           <Card className="h-100 shadow">
             <Card.Body>
-              <Card.Title>बसंत अग्रवाल</Card.Title>
+              <Card.Title>
+                {" "}
+                <strong>माननीय श्री बसंत अग्रवाल का संक्षिप्त परिचय</strong>
+              </Card.Title>
               <Card.Text>
-               <p> बंसत अग्रवाल ने अपने समुदाय के विकास के प्रति लगातार अटूट प्रतिबद्धता का प्रदर्शन किया है। उनका नेतृत्व केवल राजनीति तक सीमित नहीं है, बल्कि उन्होंने जमीनी स्तर की पहलों में गहराई से भाग लिया है जो जनता के कल्याण को प्राथमिकता देती हैं।</p>
-               <p>स्वास्थ्य और सामाजिक सेवा शिविरों के आयोजन में उनके प्रयासों के साथ-साथ पूर्व शक्ति केंद्र प्रभारी के रूप में उनकी भूमिका ने लोगों को सशक्त बनाने और एकता की भावना को प्रोत्साहित करने में स्थायी प्रभाव डाला है।</p>
-               <p>ईमानदारी और स्पष्ट दृष्टिकोण के साथ नेतृत्व करने की उनकी क्षमता ने उन्हें विभिन्न क्षेत्रों में सम्मान दिलाया है, जिससे वे ऐसे नेता बन गए हैं जिनके कार्य शब्दों से अधिक प्रभावशाली हैं|</p>
+                <p>
+                  बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता, समाजसेवी और धार्मिक
+                  आयोजक हैं, जिन्होंने अपने कार्यों से राजनीति, समाजसेवा और
+                  धार्मिक क्षेत्रों में अहम भूमिका निभाई है। उनके व्यक्तित्व का
+                  मुख्य आकर्षण उनकी समाज के प्रति अपार प्रतिबद्धता और भाजपा की
+                  विचारधारा के प्रति दृढ़ निष्ठा है। अग्रवाल मित्र मण्डल और
+                  अग्रवाल नवयुवक मण्डल में विभिन्न पदों पर कार्य करते हुए समाज
+                  के लिए कई प्रकार के दायित्वों का सफलतापूर्वक निर्वहन कर चुके
+                  हैं। वे अग्रवाल सभा के आजीवन सदस्य हैं और सामाजिक एवं धार्मिक
+                  आयोजनों में निरंतर सक्रिय रहते हैं।{" "}
+                </p>
+                <p>
+                  <strong>समाजसेवा और धार्मिक कार्यों में योगदान:</strong>
+                </p>
+                <p>
+                  बसंत अग्रवाल ने हमेशा समाज की भलाई के लिए काम किया है। वे
+                  अग्रवाल मित्र मण्डल और अग्रवाल नवयुवक मण्डल में विभिन्न पदों
+                  पर रहते हुए समाजिक दायित्वों का पालन करते हैं। उनके द्वारा
+                  विभिन्न धार्मिक और सांस्कृतिक आयोजनों का सफलतापूर्वक आयोजन
+                  किया गया है, जैसे:
+                </p>
+                <p>
+                  भोरमदेव कांवर यात्रा: उन्होंने साजा-धमधा विधानसभा क्षेत्र में
+                  लगातार छह वर्षों तक भोरमदेव कांवर पदयात्रा का आयोजन किया,
+                  जिसमें लाखों कांवरियों की सेवा का अवसर प्राप्त हुआ।
+                </p>
+                <p>
+                  धार्मिक कथा और आयोजनों का संचालन: बसंत अग्रवाल ने प्रसिद्ध
+                  संतों के श्रीमुख से रामकथा, श्रीमद्भागवत कथा और श्री हनुमंत
+                  कथा का आयोजन किया, जिससे लाखों लोगों को धार्मिक और सांस्कृतिक
+                  अनुभव हुआ।
+                </p>
               </Card.Text>
             </Card.Body>
           </Card>
         </Col>
-        <Col md={6} className="d-flex align-items-center justify-content-center profile-image-col">
-
-         
-            <img src={profileImg} alt="Profile" className="img-fluid profile-img" />
-          {/* </Col> */}
-          {/* <Card className="h-100 shadow">
+        <Col
+          md={6}
+          className="d-flex align-items-center justify-content-center profile-image-col"
+        >
+          <img
+            src={profileImg}
+            alt="Profile"
+            className="img-fluid profile-img"
+          />
+        </Col>
+        <Col md={6}>
+          <Card className="h-100 shadow">
             <Card.Body>
-              <Card.Title>Political Career</Card.Title>
-              <Card.Text>
-                Our political journey focuses on transparency, people-first policies, and sustainable development for future generations.
-              </Card.Text>
+              <Card.Title>
+                {" "}
+                <strong>जीवन परिचय</strong>
+              </Card.Title>
+              <Table striped="columns">
+                
+                <tbody>
+                  <tr>
+                    <td>सदस्य का नाम	</td>
+                    <td>श्री बसंत अग्रवाल</td>
+                    
+                  </tr>
+                  <tr>
+                    <td>पार्टी का नाम	</td>
+                    <td>भारतीय जनता पार्टी ( भा.ज.पा.)</td>
+                    
+                  </tr>
+                  <tr>
+                    <td>पिता का नाम	</td>
+                    <td>श्री लख्खी प्रसाद अग्रवाल</td>
+                  </tr> 
+                   <tr>
+                    <td>माता का नाम	</td>
+                    <td>श्रीमती माधुरी देवी अग्रवाल</td>
+                  </tr>
+                  <tr>
+                    <td>जन्मतिथि</td>
+                    <td>24 जनवरी 1983</td>
+                  </tr> 
+                  <tr>
+                    <td>विवाहित / अविवाहित	</td>
+                    <td>विवाहित</td>
+                  </tr>
+                  <tr>
+                    <td>पत्नी का नाम</td>
+                    <td>बी. कॉम.</td>
+                  </tr>
+                  <tr>
+                    <td>स्थायी पता एवं दूरभाष	</td>
+                    <td>रायपुर (छत्तीसगढ़)</td>
+                  </tr>
+                  <tr>
+                    <td>मोबाइल</td>
+                    <td>98269-03333, 81033-33333</td>
+                  </tr>
+                </tbody>
+              </Table>
             </Card.Body>
-          </Card> */}
+          </Card>
         </Col>
       </Row>
     </>

@@ -1,6 +1,7 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
+
 html {
   scroll-behavior: smooth;
 }
@@ -17,7 +18,9 @@ html {
 }
 
 body {
-  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  background: linear-gradient(135deg, #ff812d, #feb47b);
+/* background: #CF8A01; */
+/* background: linear-gradient(315deg, #f66802, #326302); */
   color: #333;
 }
 
@@ -40,7 +43,11 @@ h2 {
 h1 {
   font-weight: bold;
   margin-bottom: 30px;
-  color: #c0392b;
+  margin-top: 30px;
+  /* color: #c0392b; */
+  background: -webkit-linear-gradient(#ff6600, #ff0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .footer {
