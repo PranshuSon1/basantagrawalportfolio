@@ -40,7 +40,7 @@ export default function MediaCenter() {
   return (
     <section className="py-5" >
       <Container>
-        <h2 className="text-center fw-bold mb-5">Media Center</h2>
+        <h2 className="text-center mb-5 display-3">Media Center</h2>
         <Slider {...settings}>
           {images.map((img, index) => (
             <div key={index}>

@@ -26,7 +26,7 @@ export default function NewsComponent() {
 
   return (
     <>
-      <h2 className="text-center fw-bold mb-5">Latest From Newsroom</h2>
+      <h2 className="text-center mb-5 display-3">Latest From Newsroom</h2>
       <Row xs={1} md={2} className="g-4">
         {newsList.map((item, idx) => (
           <Col key={idx}>

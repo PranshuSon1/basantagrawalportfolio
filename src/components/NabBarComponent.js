@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import { scroller, Link as ScrollLink } from "react-scroll";
-import logo from '../assets/basantagrawalTransparent.png';
-import navbarImage from '../assets/profilecrop.png';
+import logo from "../assets/logo.png";
+import navbarImage from "../assets/profileCrop.jpg";
 
 export default function NavbarComponent() {
   const navigate = useNavigate();
@@ -38,27 +38,43 @@ export default function NavbarComponent() {
       <Container>
         <Navbar.Brand
           onClick={() => handleNavClick("home")}
-          style={{ cursor: "pointer" }}
+          style={{
+            cursor: "pointer",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+            // flex: "1", // helps centering in navbar
+          }}
+          // className="mx-auto"  
         >
           <img
             src={navbarImage}
             alt="navbar-image"
             style={{
-              width: "40px",
-              height: "40px",
+              width: "50px",
+              height: "50px",
               borderRadius: "50%",
               objectFit: "cover",
+              // marginBottom: "2px",
             }}
+            className="img-fluid"
           />
-          <img src={logo} alt="Logo" />
+          <img
+            src={logo}
+            alt="Logo"
+            style={{
+              maxHeight: "40px",
+              objectFit: "contain",
+            }}
+            className="img-fluid"
+          />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link  onClick={() => handleNavClick("home")}>
-              Home
-            </Nav.Link>
+            <Nav.Link onClick={() => handleNavClick("home")}>Home</Nav.Link>
             <Nav.Link onClick={() => handleNavClick("about")}>
               About Us
             </Nav.Link>

@@ -5,7 +5,7 @@ export default function SocialLinks() {
   return (
     <section className="py-5">
       <Container>
-        <h2 className="text-center fw-bold mb-5">Reach Us By Following</h2>
+        <h2 className="text-center mb-4 display-3">Reach Us By Following</h2>
         <Row className="g-4">
           {/* Facebook */}
           <Col md={4} sm={12}>
@@ -57,7 +57,7 @@ export default function SocialLinks() {
             </Card>
           </Col>
            {/* Twitter */}
-          <Col md={4} sm={5}>
+          <Col md={3} sm={5}>
             <Card className="h-100 shadow-sm border-0 text-center">
               <Card.Body>
                <a href="https://twitter.com/BasantAgrwl33?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">

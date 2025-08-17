@@ -19,7 +19,7 @@ export default function ProfileSection() {
             {/* Foreground PNG */}
             <img
               src={profileImg}
-              alt="Basant front img"
+              alt="Basant-Agrawal-img"
               className="profile-foreground"
               loading='lazy'
             />
@@ -31,7 +31,8 @@ export default function ProfileSection() {
             className="d-flex align-items-center profile-text-col text-white"
           >
             <div className="p-5">
-              <h1 >बसंत अग्रवाल</h1>
+              <h1 className="display-4">Basant Agrawal</h1>
+              <p>{" "}</p>
               <p>
                 बसंत अग्रवाल, जिनका जन्म 24 जनवरी 1983 को हुआ, ने सेवा और नेतृत्व के
                 माध्यम से भविष्य को आकार देने में अपना जीवन समर्पित किया है। अखिल

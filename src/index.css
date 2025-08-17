@@ -73,15 +73,15 @@ h1 {
 }
 
  .profile-section {
-  background: linear-gradient(135deg, #ff8c42, #ff4e00);
-  color: white;
+  /* background: linear-gradient(135deg, #ff8c42, #ff4e00); */
+  /* color: white; */
   overflow: hidden;
 }
 
 .profile-bg {
   position: absolute;
   width: 100%;
-  max-width: 700px;
+  /* max-width: 700px; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -98,7 +98,7 @@ h1 {
 
 @media (max-width: 768px) {
   .profile-bg {
-    max-width: 250px;
+    max-width: 400px;
   }
   .profile-foreground {
     max-width: 200px;
@@ -107,6 +107,7 @@ h1 {
 
 .profile-text-col {
   background-color: #0b3c4d;
+  border-radius: 2%;
 }
 
 @media (max-width: 768px) {

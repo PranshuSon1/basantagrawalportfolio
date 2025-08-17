@@ -4,7 +4,7 @@ import profileImg from "../assets/faq1.jpg"; // replace with your image path
 export default function AboutUs() {
   return (
     <>
-      <h2 className="text-center mb-4">About Us</h2>
+      <h2 className="text-center mb-5 display-3">About Us</h2>
       <Row className="g-4">
         <Col md={6}>
           <Card className="h-100 shadow">
@@ -57,7 +57,7 @@ export default function AboutUs() {
           <img
             src={profileImg}
             alt="Basant-about-profile-image"
-            className="img-fluid profile-img"
+            className="img-fluid profile-img rounded mx-auto d-block"
             loading='lazy'
           />
         </Col>
@@ -99,6 +99,10 @@ export default function AboutUs() {
                   </tr>
                   <tr>
                     <td>पत्नी का नाम</td>
+                    <td>ऋतु अग्रवाल</td>
+                  </tr>
+                  <tr>
+                    <td>शैक्षणिक योग्यता</td>
                     <td>बी. कॉम.</td>
                   </tr>
                   <tr>
