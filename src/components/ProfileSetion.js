@@ -12,14 +12,16 @@ export default function ProfileSection() {
             {/* Background PNG */}
             <img
               src={bgShape}
-              alt="Background Shape"
+              alt="BJP logo"
               className="profile-bg"
+              loading='lazy'
             />
             {/* Foreground PNG */}
             <img
               src={profileImg}
-              alt="Person"
+              alt="Basant front img"
               className="profile-foreground"
+              loading='lazy'
             />
           </Col>
 

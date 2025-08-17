@@ -53,6 +53,7 @@ export default function MediaCenter() {
                   objectFit: "cover",
                   borderRadius: "10px"
                 }}
+                loading='lazy'
               />
             </div>
           ))}

@@ -56,8 +56,9 @@ export default function AboutUs() {
         >
           <img
             src={profileImg}
-            alt="Profile"
+            alt="Basant-about-profile-image"
             className="img-fluid profile-img"
+            loading='lazy'
           />
         </Col>
         <Col md={6}>

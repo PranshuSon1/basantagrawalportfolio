@@ -7,24 +7,21 @@ export default function ImageSlider() {
   return (
     <Carousel fade>
       <Carousel.Item>
-        <img className="d-block w-100" src={slider1} alt="First slide" />
+        <img className="d-block w-100" src={slider1} alt="basant at Shivaji maharaj jayanti" loading='lazy' />
         <Carousel.Caption>
           <h1> <strong>उद्देश्यपूर्ण नेतृत्व, भविष्य का निर्माण!</strong></h1>
-          {/* <p>Making a difference together</p> */}
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={slider2} alt="Second slide" />
+        <img className="d-block w-100" src={slider2} alt="Basant With youth" loading='lazy'/>
         <Carousel.Caption>
           <h1><strong> आपकी आवाज़, मेरा मिशन!</strong></h1>
-          {/* <p>Empowering communities</p> */}
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={slider3} alt="Third slide" />
+        <img className="d-block w-100" src={slider3} alt="Basant with press" loading='lazy'/>
         <Carousel.Caption>
           <h1><strong>उद्देश्यपूर्ण नेतृत्व, भविष्य का निर्माण! </strong></h1>
-          {/* <p>Building a better tomorrow</p> */}
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
