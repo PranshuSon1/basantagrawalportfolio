@@ -47,6 +47,7 @@ export default function MediaCenter() {
               <img
                 src={img}
                 alt={`slide-${index}`}
+                className="media-img"
                 style={{
                   width: "100%",
                   height: "300px",

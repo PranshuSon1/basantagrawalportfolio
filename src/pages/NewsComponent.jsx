@@ -1,26 +1,48 @@
-import { Card, Col, Row } from 'react-bootstrap';
+import { Card, Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import img1 from "../assets/_DSC5182.jpeg";
 
 export default function NewsComponent() {
   const newsList = [
-    { id:1, title: 'Campaign Launch', text: 'We successfully launched our campaign with community support.' },
-    {id:2, title: 'Policy Update', text: 'Introduced new policies for better healthcare access.' },
-    {id:3, title: 'Community Meet', text: 'Held an open forum to hear citizens’ voices.' },
+    {
+      id: 1,
+      title: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता",
+      text: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता, समाजसेवी और धार्मिक आयोजक हैं, जिन्होंने अपने कार्यों से राजनीति, समाजसेवा और धार्मिक क्षेत्रों में अहम भूमिका निभाई है।",
+      img: img1,
+    },
+    {
+      id: 2,
+      title: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता",
+      text: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता, समाजसेवी और धार्मिक आयोजक हैं, जिन्होंने अपने कार्यों से राजनीति, समाजसेवा और धार्मिक क्षेत्रों में अहम भूमिका निभाई है।",
+      img: img1,
+    },
+    {
+      id: 3,
+      title: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता",
+      text: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता, समाजसेवी और धार्मिक आयोजक हैं, जिन्होंने अपने कार्यों से राजनीति, समाजसेवा और धार्मिक क्षेत्रों में अहम भूमिका निभाई है।",
+      img: img1,
+    },
   ];
 
   return (
     <>
-      <h2 className="text-center mb-4">Latest News</h2>
-      <Row className="g-4">
-        {newsList.map( (news, index) => (
-          <Col md={4} key={news.id}>
-            <Card className="h-100 shadow">
+      <h2 className="text-center fw-bold mb-5">Latest From Newsroom</h2>
+      <Row xs={1} md={2} className="g-4">
+        {newsList.map((item, idx) => (
+          <Col key={idx}>
+            <Card>
+              <Card.Img variant="top" src={item.img} />
               <Card.Body>
-                <Card.Title>{news.title}</Card.Title>
-                <Card.Text>{news.text}</Card.Text>
+                <Card.Title>{item.title}</Card.Title>
+                <Card.Text>
+                  {item.text}
+                  {/* Link to specific news */}
+                  <Link to={`/news/${item.id}`}>....Read More</Link>
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
-         ))} 
+        ))}
       </Row>
     </>
   );

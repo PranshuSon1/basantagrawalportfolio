@@ -10,6 +10,9 @@ html {
   min-height: 100vh;
   padding: 60px 0;
 }
+.max_height50vh{
+  height: 50vh;
+}
 
 .carousel-item img {
   width: 100%;
