@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { scroller, Link as ScrollLink } from "react-scroll";
 import logo from "../assets/logo.png";
 import navbarImage from "../assets/profileCrop.jpg";
@@ -34,7 +34,7 @@ export default function NavbarComponent() {
   };
 
   return (
-    <Navbar expand="lg" variant="dark" sticky="top">
+    <Navbar collapseOnSelect expand="lg" variant="dark" sticky="top" >
       <Container>
         <Navbar.Brand
           onClick={() => handleNavClick("home")}
@@ -83,6 +83,9 @@ export default function NavbarComponent() {
             </Nav.Link>
             <Nav.Link as={ScrollLink} to="news" smooth={true} duration={500}>
               News
+            </Nav.Link>
+            <Nav.Link as={Link} to={"/login"}>
+              Admin
             </Nav.Link>
             {/* <Nav.Link as={Link} to="contact" smooth={true} duration={500}>Contact Us</Nav.Link> */}
           </Nav>
