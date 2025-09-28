@@ -9,15 +9,7 @@ import { useAuth } from "../context/AuthContext";
 export default function Admin() {
   const navigate = useNavigate();
   const { logout } = useAuth();
-  const [newsList, setNewsList] = useState([
-    {
-      id:"1",
-      title: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता",
-      img: "",
-      text: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता, समाजसेवी और धार्मिक आयोजक हैं, जिन्होंने अपने कार्यों से राजनीति, समाजसेवा और धार्मिक क्षेत्रों में अहम भूमिका निभाई है। उनके व्यक्तित्व का  मुख्य आकर्षण उनकी समाज के प्रति अपार प्रतिबद्धता और भाजपा की विचारधारा के प्रति दृढ़ निष्ठा है। अग्रवाल मित्र मण्डल और अग्रवाल नवयुवक मण्डल में विभिन्न पदों पर कार्य करते हुए समाज  के लिए कई प्रकार के दायित्वों का सफलतापूर्वक निर्वहन कर चुके हैं। वे अग्रवाल सभा के आजीवन सदस्य हैं और सामाजिक एवं धार्मिक आयोजनों में निरंतर सक्रिय रहते हैं। /n भोरमदेव कांवर यात्रा: उन्होंने साजा-धमधा विधानसभा क्षेत्र में लगातार छह वर्षों तक भोरमदेव कांवर पदयात्रा का आयोजन किया,जिसमें लाखों कांवरियों की सेवा का अवसर प्राप्त हुआ। /n धार्मिक कथा और आयोजनों का संचालन: बसंत अग्रवाल ने प्रसिद्ध संतों के श्रीमुख से रामकथा, श्रीमद्भागवत कथा और श्री हनुमंत कथा का आयोजन किया, जिससे लाखों लोगों को धार्मिक और सांस्कृतिक अनुभव हुआ।",
-      place: "Raipur, C.G.",
-    },
-  ]);
+  const [newsList, setNewsList] = useState([  ]);
   const [newNews, setNewNews] = useState({ title: "", text: "", place: "" });
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -25,16 +17,17 @@ export default function Admin() {
   useEffect(() => {
     fetchNews();
   }, []);
-  async function fetchNews() {
+  const fetchNews = async () => {
     try {
-      const response = await axios.get("/getNewsList");
-      if (response.body.length) {
-        setNewsList(response.body);
-      }
+      const response = await axios.get("https://basantagbackend.onrender.com/news"); 
+      setNewsList(response.data);
+      console.log("Fetched news data:", response.data);
     } catch (error) {
-      console.log("failed to fetch news :>> ", error);
+      console.error("Error fetching news data:", error);
+    } finally {
+      setLoading(false); 
     }
-  }
+  };
   const handleFileChange = (e) => {
     setFile(e.target.files[0]); // store the first selected file
   };
@@ -47,13 +40,14 @@ export default function Admin() {
     }
 
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("image", file);
     formData.append("title", newNews.title);
     formData.append("text", newNews.text);
+    formData.append("place", newNews.place);
 
     try {
       setLoading(true);
-      const response = await axios.post("/upload", formData, {
+      const response = await axios.post("https://basantagbackend.onrender.com/news", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -61,6 +55,7 @@ export default function Admin() {
 
       console.log("Upload success:", response.data);
       alert("File uploaded successfully!");
+      fetchNews()
     } catch (error) {
       console.error("Upload failed:", error);
       alert("File upload failed!");
@@ -71,7 +66,7 @@ export default function Admin() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://your-api.com/news/${id}`);
+      await axios.delete(`https://basantagbackend.onrender.com/news/${id}`);
       // Optionally refetch the list after deletion
       fetchNews();
     } catch (error) {
@@ -156,14 +151,14 @@ export default function Admin() {
           <Card.Body>
             <Card.Title>{item.title}</Card.Title>
             <Card.Text className="clipped-text">{item.text}</Card.Text>
-            {item.img && (
-              <Card.Img src={item.img} style={{ maxWidth: "200px" }} />
+            {item.image && (
+              <Card.Img src={item.image} style={{ maxWidth: "200px" }} />
             )}
             <Card.Link
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                navigate(`/editNews/${item.id}`); // navigate to edit page
+                navigate(`/editNews/${item._id}`); // navigate to edit page
               }}
             >
               Edit
@@ -172,7 +167,7 @@ export default function Admin() {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                handleDelete(item.id); // call delete API
+                handleDelete(item._id); // call delete API
               }}
             >
               Delete

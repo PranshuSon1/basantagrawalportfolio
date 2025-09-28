@@ -19,7 +19,7 @@ const EditNews = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await axios.get(`https://your-api.com/news/${id}`);
+        const res = await axios.get(`https://basantagbackend.onrender.com/news/${id}`);
         setFormData({
           title: res.data.title || "",
           text: res.data.text || "",
@@ -50,19 +50,19 @@ const EditNews = () => {
       data.append("title", formData.title);
       data.append("text", formData.text);
       data.append("place", formData.place);
-      if (formData.file) data.append("file", formData.file);
+      if (formData.file) data.append("image", formData.file);
 
-      await axios.put(`https://your-api.com/news/${id}`, data, {
+      await axios.put(`https://basantagbackend.onrender.com/news/${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-
-      navigate("/admin"); // go back to admin/news list
+      alert("News updated successfully!");
     } catch (err) {
       console.error("Error updating news:", err);
     } finally {
       setLoading(false);
+      navigate("/admin"); // go back to admin/news list
     }
   };
 
@@ -79,6 +79,7 @@ const EditNews = () => {
             value={formData.title}
             onChange={handleChange}
             required
+            disabled={loading}
           />
         </Form.Group>
 
@@ -92,6 +93,7 @@ const EditNews = () => {
             value={formData.text}
             onChange={handleChange}
             required
+            disabled={loading}
           />
         </Form.Group>
 
@@ -103,12 +105,14 @@ const EditNews = () => {
             name="place"
             value={formData.place}
             onChange={handleChange}
+            disabled={loading}
           />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="file">
           <Form.Label>Image</Form.Label>
-          <Form.Control type="file" name="file" onChange={handleChange} />
+          <Form.Control type="file" name="file" onChange={handleChange} 
+            disabled={loading}/>
         </Form.Group>
         <div className="d-flex gap-2 mb-2">
           <Button variant="primary" type="submit" disabled={loading}>

@@ -1,26 +1,48 @@
-import { Card, Col, Row } from "react-bootstrap";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Card, Col, Row, Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Element } from "react-scroll";
 import NotFoundPage from "./NotFoundPage";
+
 const NewsPage = () => {
   const { id } = useParams();
+  const [news, setNews] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Example news data
-
-  console.log("id :>> ", id);
-  const news = {
-      id: 1,
-      title: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता",
-      img: "https://dl.dropboxusercontent.com/scl/fi/ujlucbg4ypuzj609ys7ew/1759061122258-d-koi-COFXWa6LJdw-unsplash.jpg?rlkey=13s92wqjk87eyx3fuqhg80kvo&dl=0",
-      text: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता, समाजसेवी और धार्मिक आयोजक हैं, जिन्होंने अपने कार्यों से राजनीति, समाजसेवा और धार्मिक क्षेत्रों में अहम भूमिका निभाई है। उनके व्यक्तित्व का  मुख्य आकर्षण उनकी समाज के प्रति अपार प्रतिबद्धता और भाजपा की विचारधारा के प्रति दृढ़ निष्ठा है। \nअग्रवाल मित्र मण्डल और अग्रवाल नवयुवक मण्डल में विभिन्न पदों पर कार्य करते हुए समाज  के लिए कई प्रकार के दायित्वों का सफलतापूर्वक निर्वहन कर चुके हैं। वे अग्रवाल सभा के आजीवन सदस्य हैं और सामाजिक एवं धार्मिक आयोजनों में निरंतर सक्रिय रहते हैं। \n भोरमदेव कांवर यात्रा: उन्होंने साजा-धमधा विधानसभा क्षेत्र में लगातार छह वर्षों तक भोरमदेव कांवर पदयात्रा का आयोजन किया,जिसमें लाखों कांवरियों की सेवा का अवसर प्राप्त हुआ। \n धार्मिक कथा और आयोजनों का संचालन: बसंत अग्रवाल ने प्रसिद्ध संतों के श्रीमुख से रामकथा, श्रीमद्भागवत कथा और श्री हनुमंत कथा का आयोजन किया, जिससे लाखों लोगों को धार्मिक और सांस्कृतिक अनुभव हुआ।",
-      date: "August 17, 2025",
-      time: "02:17 PM",
-      place: "Raipur, C.G.",
+  const fetchNewsById = async (newsId) => {
+    try {
+      const response = await axios.get(`https://basantagbackend.onrender.com/news/${newsId}`);
+      if (response.data) {
+        //parse the date and time from the timestamp
+        response.data.date = new Date(response?.data?.createdAt).toLocaleDateString();
+        response.data.time = new Date(response?.data?.createdAt).toLocaleTimeString();
+        setNews(response.data);
+      } else {
+        setNews(null);
+      }
+    } catch (error) {
+      console.log("failed to fetch news by id :>> ", error);
+      setNews(null);
+    } finally {
+      setLoading(false); 
     }
+  };
+  useEffect(() => {
+    if (id) {
+      fetchNewsById(id);
+    }
+  }, [id]);
+console.log('news :>> ', news);
 
-
-
-  if (!news) return <NotFoundPage />;
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
+        <Spinner animation="border" role="status" />
+        <span className="ms-2">Loading news...</span>
+      </div>
+    );
+  } else if (!news) return <NotFoundPage />;
   return (
     <Element name="Profile">
       <div className="section container text-white">
@@ -32,7 +54,7 @@ const NewsPage = () => {
                 <Card.Title>
                   <h2>{news.title}</h2>
                 </Card.Title>
-                <Card.Img variant="top" src={news.img}></Card.Img>
+                <Card.Img variant="top" src={news.image}></Card.Img>
                 <blockquote className="blockquote mb-0">
                   {news.text.split("\n").map((para, index) => (
                     <p key={index}>{para}</p>

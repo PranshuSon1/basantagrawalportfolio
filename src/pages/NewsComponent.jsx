@@ -1,28 +1,36 @@
-import { Card, Col, Row } from "react-bootstrap";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Card, Col, Row, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import img1 from "../assets/_DSC5182.jpeg";
 
 export default function NewsComponent() {
-  const newsList = [
-    {
-      id: 1,
-      title: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता",
-      text: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता, समाजसेवी और धार्मिक आयोजक हैं, जिन्होंने अपने कार्यों से राजनीति, समाजसेवा और धार्मिक क्षेत्रों में अहम भूमिका निभाई है।",
-      img: img1,
-    },
-    {
-      id: 2,
-      title: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता",
-      text: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता, समाजसेवी और धार्मिक आयोजक हैं, जिन्होंने अपने कार्यों से राजनीति, समाजसेवा और धार्मिक क्षेत्रों में अहम भूमिका निभाई है।",
-      img: img1,
-    },
-    {
-      id: 3,
-      title: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता",
-      text: "बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता, समाजसेवी और धार्मिक आयोजक हैं, जिन्होंने अपने कार्यों से राजनीति, समाजसेवा और धार्मिक क्षेत्रों में अहम भूमिका निभाई है।",
-      img: img1,
+  const [newsList, setNewsList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchNews = async () => {
+    try {
+      const response = await axios.get("https://basantagbackend.onrender.com/news"); 
+      setNewsList(response.data);
+      console.log("Fetched news data:", response.data);
+    } catch (error) {
+      console.error("Error fetching news data:", error);
+    } finally {
+      setLoading(false); 
     }
-  ];
+  };
+
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
+        <Spinner animation="border" role="status" />
+        <span className="ms-2">Loading news...</span>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -31,13 +39,12 @@ export default function NewsComponent() {
         {newsList.map((item) => (
           <Col key={item.id}>
             <Card>
-              <Card.Img variant="top" src={item.img} />
+              <Card.Img variant="top" src={item.image}  />
               <Card.Body>
                 <Card.Title>{item.title}</Card.Title>
                 <Card.Text>
                   {item.text}
-                  {/* Link to specific news */}
-                  <Link to={`/news/${item.id}`}>....Read More</Link>
+                  <Link to={`/news/${item._id}`}> ....Read More</Link>
                 </Card.Text>
               </Card.Body>
             </Card>
