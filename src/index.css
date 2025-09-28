@@ -125,3 +125,10 @@ h1 {
   width: 100%;
   border-radius: 10px;
 }
+
+.clipped-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* show only 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

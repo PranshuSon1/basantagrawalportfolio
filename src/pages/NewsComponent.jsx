@@ -28,8 +28,8 @@ export default function NewsComponent() {
     <>
       <h2 className="text-center mb-5 display-3">Latest From Newsroom</h2>
       <Row xs={1} md={2} className="g-4">
-        {newsList.map((item, idx) => (
-          <Col key={idx}>
+        {newsList.map((item) => (
+          <Col key={item.id}>
             <Card>
               <Card.Img variant="top" src={item.img} />
               <Card.Body>

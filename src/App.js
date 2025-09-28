@@ -3,6 +3,7 @@ import NavbarComponent from './components/NabBarComponent';
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 import Admin from "./pages/Admin";
+import EditNews from "./pages/EditNews";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NewsPage from "./pages/NewsPage";
@@ -28,6 +29,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/editNews/:id" element={<ProtectedRoute><EditNews/></ProtectedRoute> }></Route>
         {/* 404 fallback */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
