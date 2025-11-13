@@ -1,3 +1,5 @@
+// Next.js Contact Us page migrated from src/pages/ContactUs.js
+"use client";
 import { Button, Card, Form } from 'react-bootstrap';
 
 export default function ContactUs() {

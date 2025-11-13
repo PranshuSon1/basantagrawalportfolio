@@ -1,52 +1,60 @@
-import axios from "axios";
+// Next.js News Page migrated from src/pages/NewsPage.js
+"use client";
+import { newsService } from "@/src/services/newsService";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Card, Col, Row, Spinner } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 import { Element } from "react-scroll";
-import NotFoundPage from "./NotFoundPage";
 
 const NewsPage = () => {
-  const { id } = useParams();
+  const params = useParams();
+  const id = params?.id;
   const [news, setNews] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const fetchNewsById = async (newsId) => {
     try {
-      const response = await axios.get(`https://basantagbackend.onrender.com/news/${newsId}`);
-      if (response.data) {
-        //parse the date and time from the timestamp
-        response.data.date = new Date(response?.data?.createdAt).toLocaleDateString();
-        response.data.time = new Date(response?.data?.createdAt).toLocaleTimeString();
-        setNews(response.data);
+      setLoading(true);
+      const result = await newsService.getNewsById(newsId);
+      if (result.success && result.data) {
+        const newsData = {
+          ...result.data,
+          date: new Date(result.data.createdAt).toLocaleDateString(),
+          time: new Date(result.data.createdAt).toLocaleTimeString(),
+        };
+        setNews(newsData);
       } else {
         setNews(null);
       }
     } catch (error) {
-      console.log("failed to fetch news by id :>> ", error);
       setNews(null);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
+
   useEffect(() => {
-    if (id) {
-      fetchNewsById(id);
-    }
+    if (id) fetchNewsById(id);
   }, [id]);
-console.log('news :>> ', news);
 
   if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
-        <Spinner animation="border" role="status" />
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
         <span className="ms-2">Loading news...</span>
       </div>
     );
-  } else if (!news) return <NotFoundPage />;
+  }
+
+  if (!news) {
+    return <div>News not found.</div>;
+  }
+
   return (
     <Element name="Profile">
       <div className="section container text-white">
-        {/* <h1 className="text-center mb-4">{news.title}</h1> */}
         <Row className="g-4">
           <Col md={6}>
             <Card className="h-100 shadow">
@@ -54,14 +62,16 @@ console.log('news :>> ', news);
                 <Card.Title>
                   <h2>{news.title}</h2>
                 </Card.Title>
-                <Card.Img variant="top" src={news.image}></Card.Img>
-                <blockquote className="blockquote mb-0">
+                {news.image && (
+                  <Card.Img variant="top" src={news.image} alt={news.title} style={{ maxHeight: "400px", objectFit: "cover" }} />
+                )}
+                <blockquote className="blockquote mb-0 mt-3">
                   {news.text.split("\n").map((para, index) => (
                     <p key={index}>{para}</p>
                   ))}
                   <footer className="blockquote-footer">
                     {news.date} {news.time}{" "}
-                    <cite title={news.place}> {news.place}</cite>
+                    {news.place && <cite title={news.place}>{news.place}</cite>}
                   </footer>
                 </blockquote>
               </Card.Body>
@@ -74,3 +84,4 @@ console.log('news :>> ', news);
 };
 
 export default NewsPage;
+

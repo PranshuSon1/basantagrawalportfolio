@@ -8,16 +8,71 @@
 # testing
 /coverage
 
+# Next.js
+/.next/
+/out/
+next-env.d.ts
+
 # production
 /build
+/dist
 
 # misc
 .DS_Store
-.env.local
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env
+.env*.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Logs
+logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Build artifacts
+*.map
+*.min.js
+*.min.css

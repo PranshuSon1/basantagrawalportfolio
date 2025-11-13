@@ -1,6 +1,5 @@
+"use client";
 import { Col, Container, Row } from "react-bootstrap";
-import bgShape from "../assets/BJP.png";
-import profileImg from "../assets/profile.png"; // replace with your image path
 
 export default function ProfileSection() {
   return (
@@ -11,14 +10,14 @@ export default function ProfileSection() {
            <Col md={6} className="position-relative text-center">
             {/* Background PNG */}
             <img
-              src={bgShape}
+              src="/BJP.png"
               alt="BJP logo"
               className="profile-bg"
               loading='lazy'
             />
             {/* Foreground PNG */}
             <img
-              src={profileImg}
+              src="/profile.png"
               alt="Basant-Agrawal-img"
               className="profile-foreground"
               loading='lazy'
@@ -32,7 +31,6 @@ export default function ProfileSection() {
           >
             <div className="p-5">
               <h1 className="display-4">Basant Agrawal</h1>
-              <p>{" "}</p>
               <p>
                 बसंत अग्रवाल, जिनका जन्म 24 जनवरी 1983 को हुआ, ने सेवा और नेतृत्व के
                 माध्यम से भविष्य को आकार देने में अपना जीवन समर्पित किया है। अखिल

@@ -1,36 +1,51 @@
+"use client";
 import { createContext, useContext, useEffect, useState } from "react";
+import { authService } from "../services/authService";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true); // NEW
+  const [loading, setLoading] = useState(true);
 
   // Load user from localStorage on app start
   useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-      console.log('savedUser :>> ', JSON.parse(savedUser)); 
-       setLoading(false);
+    if (typeof window !== 'undefined') {
+      const savedUser = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
+      
+      if (savedUser && token) {
+        setUser(JSON.parse(savedUser));
+      }
+      setLoading(false);
+    } else {
+      setLoading(false);
     }
   }, []);
 
-    const login = (username, password) => {
-    // 🔹 Replace with API call
-    if (username === "admin" && password === "password") {
-      const userData = { username };
-      setUser(userData);
-      localStorage.setItem("user", JSON.stringify(userData));
-      return true;
+  const login = async (username, password) => {
+    try {
+      const result = await authService.login(username, password);
+      if (result.success) {
+        const userData = { username };
+        setUser(userData);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem("user", JSON.stringify(userData));
+        }
+        return { success: true };
+      }
+      return { success: false, message: result.message };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.message || "Login failed",
+      };
     }
-    return false;
   };
 
-
- const logout = () => {
+  const logout = () => {
     setUser(null);
-    localStorage.removeItem("user");
+    authService.logout();
   };
 
   return (

@@ -1,0 +1,135 @@
+/* app/globals.css - Global styles for Next.js app */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background: linear-gradient(135deg, #ff812d, #feb47b);
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+}
+
+.section {
+  min-height: 100vh;
+  padding: 60px 0;
+}
+
+.max_height50vh {
+  height: 50vh;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.navbar {
+  background: linear-gradient(90deg, #ff8008, #ffc837);
+}
+
+.navbar-brand img {
+  height: 40px;
+}
+
+h2 {
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  background: -webkit-linear-gradient(#ff6600, #ff0000);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer {
+  background: linear-gradient(90deg, #ff8008, #ffc837);
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.profile-section {
+  overflow: hidden;
+}
+
+.profile-bg {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.profile-foreground {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .profile-bg {
+    max-width: 400px;
+  }
+  .profile-foreground {
+    max-width: 200px;
+  }
+}
+
+.profile-text-col {
+  background-color: #0b3c4d;
+  border-radius: 2%;
+}
+
+@media (max-width: 768px) {
+  .profile-img {
+    max-height: 300px;
+  }
+}
+
+.social-section iframe {
+  border-radius: 8px;
+}
+
+.slick-center img {
+  transform: scale(1.2);
+  transition: transform 0.5s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.slick-slide img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.clipped-text {
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

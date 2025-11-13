@@ -1,35 +1,61 @@
+"use client";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { scroller, Link as ScrollLink } from "react-scroll";
-import logo from "../assets/logo.png";
-import navbarImage from "../assets/profileCrop.jpg";
+import { scroller } from "react-scroll";
 
 export default function NavbarComponent() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  // Scroll to section if redirected with state
+  const router = useRouter();
+  const pathname = usePathname();
+  
+  // Scroll to section if redirected with hash
   useEffect(() => {
-    if (location.state?.scrollTo) {
-      scroller.scrollTo(location.state.scrollTo, {
-        duration: 500,
-        smooth: true,
-        offset: -70, // adjust for navbar height
-      });
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.substring(1);
+      setTimeout(() => {
+        try {
+          scroller.scrollTo(hash, {
+            duration: 500,
+            smooth: true,
+            offset: -70, // adjust for navbar height
+          });
+        } catch (error) {
+          // Fallback to native scroll if react-scroll fails
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      }, 100);
     }
-  }, [location]);
+  }, [pathname]);
 
   const handleNavClick = (section) => {
-    if (location.pathname === "/") {
+    if (pathname === "/") {
       // Already on home, just scroll
-      scroller.scrollTo(section, {
-        duration: 500,
-        smooth: true,
-        offset: -70,
-      });
+      try {
+        scroller.scrollTo(section, {
+          duration: 500,
+          smooth: true,
+          offset: -70,
+        });
+      } catch (error) {
+        // Fallback to native scroll if react-scroll fails
+        const element = document.getElementById(section);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          // Try finding Element by name attribute
+          const elementByName = document.querySelector(`[name="${section}"]`);
+          if (elementByName) {
+            elementByName.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      }
     } else {
-      // Navigate to home and tell it which section to scroll
-      navigate("/", { state: { scrollTo: section } });
+      // Navigate to home with hash
+      router.push(`/#${section}`);
     }
   };
 
@@ -49,7 +75,7 @@ export default function NavbarComponent() {
           // className="mx-auto"  
         >
           <img
-            src={navbarImage}
+            src="/profileCrop.jpg"
             alt="navbar-image"
             style={{
               width: "50px",
@@ -61,7 +87,7 @@ export default function NavbarComponent() {
             className="img-fluid"
           />
           <img
-            src={logo}
+            src="/logo.png"
             alt="Logo"
             style={{
               maxHeight: "40px",
@@ -81,10 +107,10 @@ export default function NavbarComponent() {
             <Nav.Link onClick={() => handleNavClick("media")}>
               Media Center
             </Nav.Link>
-            <Nav.Link as={ScrollLink} to="news" smooth={true} duration={500}>
+            <Nav.Link onClick={() => handleNavClick("news")}>
               News
             </Nav.Link>
-            <Nav.Link as={Link} to={"/login"}>
+            <Nav.Link as={Link} href={"/login"}>
               Admin
             </Nav.Link>
             {/* <Nav.Link as={Link} to="contact" smooth={true} duration={500}>Contact Us</Nav.Link> */}

@@ -1,57 +1,44 @@
+// This is the Next.js page for the home route, migrated from src/pages/Home.js
+"use client";
+import ImageSlider from '@/src/components/ImageSlider';
+import ProfileSection from '@/src/components/ProfileSetion';
+import SocialLinksSection from "@/src/components/SocialLinksSection";
 import { Element } from 'react-scroll';
-import ImageSlider from '../components/ImageSlider';
-import ProfileSection from '../components/ProfileSetion';
-import SocialLinksSection from "../components/SocialLinksSection";
-import AboutUs from './AboutUs';
-// import NavbarComponent from './components/NabBarComponent';
-import MediaCenter from './MediaCenter';
-import News from './NewsComponent';
-
+import AboutUs from './about/page';
+import MediaCenter from './media-center/page';
+import News from './news/page';
 
 export default function Home() {
   return (
    <>
-      {/* <NavbarComponent /> */}
-
-      <Element name="home">
+      <Element name="home" id="home">
         <ImageSlider />
       </Element>
-
-      <Element name="Profile">
+      <Element name="Profile" id="Profile">
         <div className="section container text-white">
           <ProfileSection />
         </div>
       </Element>
-       <Element name="media">
+      <Element name="media" id="media">
         <div className="container text-white max_height50vh">
           <MediaCenter />
         </div>
       </Element>
-
-      <Element name="news">
+      <Element name="news" id="news">
         <div className="section container text-white">
           <News/>
-          </div>
+        </div>
       </Element>
-      <Element name="SocialLinks">
+      <Element name="SocialLinks" id="SocialLinks">
         <div className="section container text-white">
           <SocialLinksSection />
         </div>
       </Element>
-      <Element name="about">
+      <Element name="about" id="about">
         <div className="section container text-white">
           <AboutUs />
         </div>
       </Element>
-
-     
-
-      {/* <Element name="contact">
-        <div className="section container text-white">
-          <ContactUs />
-        </div>
-      </Element> */}
-
       <footer className="footer">Copyright © 2024 Basant Agrawal</footer>
     </>
   );

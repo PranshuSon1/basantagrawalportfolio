@@ -1,10 +1,19 @@
+"use client";
+import { useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import { Navigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 
 
 export default function ProtectedRoute({ children }) {
-  const { user ,loading } = useAuth();
+  const { user, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push("/login");
+    }
+  }, [user, loading, router]);
 
    if (loading) {
     // Show spinner while checking localStorage
@@ -16,7 +25,7 @@ export default function ProtectedRoute({ children }) {
   }
 
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return null;
   }
 
   return children;

@@ -1,5 +1,8 @@
+// Next.js About Us page migrated from src/pages/AboutUs.js
+"use client";
 import { Card, Col, Row, Table } from 'react-bootstrap';
-import profileImg from "../assets/faq1.jpg"; // replace with your image path
+
+const profileImg = '/faq1.jpg';
 
 export default function AboutUs() {
   return (
@@ -13,7 +16,7 @@ export default function AboutUs() {
                 {" "}
                 <strong>माननीय श्री बसंत अग्रवाल का संक्षिप्त परिचय</strong>
               </Card.Title>
-              <Card.Text>
+              <div>
                 <p>
                   बसंत अग्रवाल एक प्रतिष्ठित भाजपा नेता, समाजसेवी और धार्मिक
                   आयोजक हैं, जिन्होंने अपने कार्यों से राजनीति, समाजसेवा और
@@ -46,7 +49,7 @@ export default function AboutUs() {
                   कथा का आयोजन किया, जिससे लाखों लोगों को धार्मिक और सांस्कृतिक
                   अनुभव हुआ।
                 </p>
-              </Card.Text>
+              </div>
             </Card.Body>
           </Card>
         </Col>
@@ -69,23 +72,20 @@ export default function AboutUs() {
                 <strong>जीवन परिचय</strong>
               </Card.Title>
               <Table striped="columns">
-                
                 <tbody>
                   <tr>
                     <td>सदस्य का नाम	</td>
                     <td>श्री बसंत अग्रवाल</td>
-                    
                   </tr>
                   <tr>
                     <td>पार्टी का नाम	</td>
                     <td>भारतीय जनता पार्टी ( भा.ज.पा.)</td>
-                    
                   </tr>
                   <tr>
                     <td>पिता का नाम	</td>
                     <td>श्री लख्खी प्रसाद अग्रवाल</td>
                   </tr> 
-                   <tr>
+                  <tr>
                     <td>माता का नाम	</td>
                     <td>श्रीमती माधुरी देवी अग्रवाल</td>
                   </tr>
